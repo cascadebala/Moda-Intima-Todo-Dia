@@ -257,15 +257,16 @@ export const CheckoutView: React.FC<CheckoutViewProps> = ({ navigate }) => {
           </div>
 
           <div className="pt-6 flex flex-col sm:flex-row gap-3 justify-center">
-            <button
-              onClick={() => {
-                const msg = encodeURIComponent(`Olá! Realizei o pedido #${completedOrder.orderNumber} no site e gostaria de confirmar o envio.`);
-                window.open(`https://wa.me/5511999998888?text=${msg}`, '_blank');
-              }}
-              className="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs py-3 px-6 rounded-xl transition-colors"
+            <a
+              href={`https://wa.me/5511999998888?text=${encodeURIComponent(
+                `Olá! Realizei o pedido #${completedOrder.orderNumber} no site e gostaria de confirmar o envio.`
+              )}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs py-3 px-6 rounded-xl transition-colors inline-flex items-center justify-center"
             >
               Confirmar pelo WhatsApp
-            </button>
+            </a>
             <button
               onClick={() => navigate('/minha-conta')}
               className="bg-stone-800 hover:bg-stone-900 text-white font-semibold text-xs py-3 px-6 rounded-xl transition-colors"

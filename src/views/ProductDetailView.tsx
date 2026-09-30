@@ -128,13 +128,6 @@ export const ProductDetailView: React.FC<ProductDetailViewProps> = ({ productSlu
     navigate('/checkout');
   };
 
-  const handleWhatsAppBuy = () => {
-    const message = encodeURIComponent(
-      `Olá! Tenho interesse no produto "${product.name}" (Código: ${product.sku}), na cor ${selectedColor?.name || 'padrão'} e tamanho ${selectedSize}. Gostaria de saber mais informações!`
-    );
-    window.open(`https://wa.me/5511999998888?text=${message}`, '_blank');
-  };
-
   const handleReviewSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!reviewAuthor.trim() || !reviewComment.trim()) {
@@ -406,13 +399,17 @@ export const ProductDetailView: React.FC<ProductDetailViewProps> = ({ productSlu
             </div>
 
             {/* Comprar pelo WhatsApp */}
-            <button
-              onClick={handleWhatsAppBuy}
+            <a
+              href={`https://wa.me/5511999998888?text=${encodeURIComponent(
+                `Olá! Tenho interesse no produto "${product.name}" (Código: ${product.sku}), na cor ${selectedColor?.name || 'padrão'} e tamanho ${selectedSize}. Gostaria de saber mais informações!`
+              )}`}
+              target="_blank"
+              rel="noopener noreferrer"
               className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs sm:text-sm py-3.5 px-4 rounded-xl flex items-center justify-center gap-2 shadow-sm transition-colors cursor-pointer"
             >
               <MessageCircle className="w-4 h-4 fill-current" />
               <span>COMPRAR PELO WHATSAPP</span>
-            </button>
+            </a>
           </div>
 
           {/* Shipping and Trust Badges */}

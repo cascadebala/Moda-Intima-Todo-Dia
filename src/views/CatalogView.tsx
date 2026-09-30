@@ -47,10 +47,10 @@ export const CatalogView: React.FC<CatalogViewProps> = ({
   const [mobileFilterOpen, setMobileFilterOpen] = useState(false);
 
   useEffect(() => {
-    if (initialCategory !== undefined) setSelectedCategory(initialCategory);
-    if (initialSearch !== undefined) setSearchQuery(initialSearch);
-    if (isSaleOnly !== undefined) setOnlySale(isSaleOnly);
-    if (isNewOnly !== undefined) setOnlyNew(isNewOnly);
+    setSelectedCategory(initialCategory || '');
+    setSearchQuery(initialSearch || '');
+    setOnlySale(!!isSaleOnly);
+    setOnlyNew(!!isNewOnly);
   }, [initialCategory, initialSearch, isSaleOnly, isNewOnly]);
 
   useEffect(() => {

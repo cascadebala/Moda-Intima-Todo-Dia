@@ -25,13 +25,15 @@ import {
 import { AdminDashboard } from './views/admin/AdminDashboard.tsx';
 
 export default function App() {
-  const [currentPath, setCurrentPath] = useState<string>(() => {
-    return window.location.pathname || '/';
-  });
+  const getFullLocation = () => {
+    return (window.location.pathname + window.location.search) || '/';
+  };
+
+  const [currentPath, setCurrentPath] = useState<string>(() => getFullLocation());
 
   useEffect(() => {
     const handlePopState = () => {
-      setCurrentPath(window.location.pathname || '/');
+      setCurrentPath(getFullLocation());
     };
     window.addEventListener('popstate', handlePopState);
     return () => window.removeEventListener('popstate', handlePopState);
@@ -41,6 +43,8 @@ export default function App() {
     if (path !== currentPath) {
       window.history.pushState({}, '', path);
       setCurrentPath(path);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
@@ -64,6 +68,7 @@ export default function App() {
       const categoryTitle = slug.charAt(0).toUpperCase() + slug.slice(1);
       return (
         <CatalogView
+          key={`cat-${slug}`}
           initialCategory={slug}
           pageTitle={`Linha ${categoryTitle}`}
           navigate={navigate}
@@ -72,9 +77,10 @@ export default function App() {
     }
 
     // Ofertas
-    if (currentPath === '/ofertas') {
+    if (currentPath.startsWith('/ofertas')) {
       return (
         <CatalogView
+          key="ofertas"
           isSaleOnly={true}
           pageTitle="Ofertas Especiais"
           pageSubtitle="Peças exclusivas com descontos especiais de até 35% OFF."
@@ -84,9 +90,10 @@ export default function App() {
     }
 
     // Novidades
-    if (currentPath === '/novidades') {
+    if (currentPath.startsWith('/novidades')) {
       return (
         <CatalogView
+          key="novidades"
           isNewOnly={true}
           pageTitle="Lançamentos & Novidades"
           pageSubtitle="As mais recentes criações da Moda Intima Todo Dia."
@@ -97,10 +104,14 @@ export default function App() {
 
     // Search query or general products
     if (currentPath.startsWith('/produtos')) {
-      const urlParams = new URLSearchParams(window.location.search);
-      const search = urlParams.get('search') || undefined;
+      const searchIndex = currentPath.indexOf('?');
+      const queryParams = searchIndex !== -1
+        ? new URLSearchParams(currentPath.slice(searchIndex))
+        : new URLSearchParams(window.location.search);
+      const search = queryParams.get('search') || undefined;
       return (
         <CatalogView
+          key={`produtos-${search || 'all'}`}
           initialSearch={search}
           navigate={navigate}
         />
@@ -108,34 +119,41 @@ export default function App() {
     }
 
     // Checkout
-    if (currentPath === '/checkout') {
+    if (currentPath.startsWith('/checkout')) {
       return <CheckoutView navigate={navigate} />;
     }
 
     // Account & Login
-    if (currentPath === '/minha-conta' || currentPath === '/login' || currentPath === '/cadastro') {
+    if (
+      currentPath.startsWith('/minha-conta') ||
+      currentPath.startsWith('/login') ||
+      currentPath.startsWith('/cadastro')
+    ) {
       return <AccountView navigate={navigate} />;
     }
 
     // Wishlist
-    if (currentPath === '/favoritos') {
+    if (currentPath.startsWith('/favoritos')) {
       return <WishlistView navigate={navigate} />;
     }
 
     // Institutional Pages
-    if (currentPath === '/sobre-nos') {
+    if (currentPath.startsWith('/sobre-nos')) {
       return <AboutView navigate={navigate} />;
     }
-    if (currentPath === '/contato') {
+    if (currentPath.startsWith('/contato')) {
       return <ContactView navigate={navigate} />;
     }
-    if (currentPath === '/trocas-e-devolucoes') {
+    if (currentPath.startsWith('/trocas-e-devolucoes')) {
       return <ExchangesPolicyView navigate={navigate} />;
     }
-    if (currentPath === '/politica-de-entrega') {
+    if (currentPath.startsWith('/politica-de-entrega')) {
       return <ShippingPolicyView navigate={navigate} />;
     }
-    if (currentPath === '/politica-de-privacidade' || currentPath === '/termos-de-uso') {
+    if (
+      currentPath.startsWith('/politica-de-privacidade') ||
+      currentPath.startsWith('/termos-de-uso')
+    ) {
       return <PrivacyPolicyView navigate={navigate} />;
     }
 

@@ -138,21 +138,21 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ navigate }) => {
         discountPercent: prodPromoPrice ? Math.round(((prodPrice - prodPromoPrice) / prodPrice) * 100) : undefined,
         stock: Number(prodStock),
         minStockAlert: Number(prodMinStock),
-        images: [prodImage],
-        colors: [
+        images: editingProduct && editingProduct.images?.length ? [prodImage, ...editingProduct.images.slice(1)] : [prodImage],
+        colors: editingProduct?.colors || [
           { name: 'Vinho Bordô', hex: '#5B1525' },
           { name: 'Rosa Nude', hex: '#C87D85' },
           { name: 'Preto', hex: '#1C1917' }
         ],
-        sizes: ['P', 'M', 'G', 'GG'],
+        sizes: editingProduct?.sizes || ['P', 'M', 'G', 'GG'],
         description: prodDescription,
         material: prodMaterial,
         careInstructions: prodCare,
         isFeatured: prodIsFeatured,
         isNew: prodIsNew,
         isOnSale: prodIsOnSale,
-        rating: 5.0,
-        reviewCount: 0
+        rating: editingProduct?.rating ?? 5.0,
+        reviewCount: editingProduct?.reviewCount ?? 0
       };
 
       if (editingProduct) {
@@ -172,10 +172,12 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ navigate }) => {
   };
 
   const handleDeleteProduct = async (id: string, name: string) => {
-    if (confirm(`Tem certeza que deseja excluir o produto "${name}"?`)) {
+    try {
       await api.deleteProduct(id);
       showToast(`Produto "${name}" excluído.`);
       loadAllData();
+    } catch {
+      showToast('Erro ao excluir produto.', 'error');
     }
   };
 
