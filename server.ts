@@ -278,7 +278,7 @@ app.post('/api/admin/login', (req, res) => {
   const cleanEmail = (email || '').trim().toLowerCase();
   if (
     cleanEmail === 'rafaeledreza@modaintimatododia.com.br' &&
-    password === '253012'
+    password === '301115'
   ) {
     res.json({
       success: true,
