@@ -142,7 +142,7 @@ export const Footer: React.FC<FooterProps> = ({ navigate }) => {
               </li>
               <li className="flex items-center gap-2">
                 <Mail className="w-3.5 h-3.5 text-stone-500" />
-                <span className="truncate">atendimento@modaintimatododia.com.br</span>
+                <span className="truncate">modaintimatododia@gmail.com</span>
               </li>
               <li className="flex items-center gap-2">
                 <Clock className="w-3.5 h-3.5 text-stone-500" />

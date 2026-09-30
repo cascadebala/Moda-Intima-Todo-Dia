@@ -555,7 +555,7 @@ const initialSettings: StoreSettings = {
   logoUrl: '',
   whatsappNumber: '5511999998888',
   whatsappMessage: 'Olá! Gostaria de mais informações sobre as peças da Moda Intima Todo Dia.',
-  email: 'atendimento@modaintimatododia.com.br',
+  email: 'modaintimatododia@gmail.com',
   phone: '(11) 3456-7890',
   instagram: '@modaintimatododia',
   facebook: 'modaintimatododia',

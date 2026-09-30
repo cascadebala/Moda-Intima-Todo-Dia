@@ -156,7 +156,7 @@ export const ContactView: React.FC<PageProps> = () => {
                 </div>
                 <div>
                   <span className="font-bold text-stone-900">E-mail Oficial</span>
-                  <p className="text-stone-600 mt-0.5">atendimento@modaintimatododia.com.br</p>
+                  <p className="text-stone-600 mt-0.5">modaintimatododia@gmail.com</p>
                 </div>
               </div>
 
@@ -283,7 +283,7 @@ export const ExchangesPolicyView: React.FC<PageProps> = () => {
 
         <h3 className="font-serif text-lg font-bold text-stone-900">4. Como Solicitar</h3>
         <p>
-          Basta entrar em contato com nosso time de atendimento através do WhatsApp (11) 99999-8888 ou e-mail atendimento@modaintimatododia.com.br informando o número do pedido e o item a ser trocado.
+          Basta entrar em contato com nosso time de atendimento através do WhatsApp (11) 99999-8888 ou e-mail modaintimatododia@gmail.com informando o número do pedido e o item a ser trocado.
         </p>
       </div>
     </div>

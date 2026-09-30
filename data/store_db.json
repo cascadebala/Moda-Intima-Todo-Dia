@@ -1,0 +1,678 @@
+{
+  "products": [
+    {
+      "id": "prod-001",
+      "name": "Conjunto Renda Chantilly Floratta",
+      "slug": "conjunto-renda-chantilly-floratta",
+      "sku": "MITD-CJ-001",
+      "category": "Conjuntos",
+      "subcategory": "Lingerie Fina",
+      "price": 189.9,
+      "promoPrice": 149.9,
+      "discountPercent": 21,
+      "stock": 28,
+      "minStockAlert": 5,
+      "isFeatured": true,
+      "isNew": true,
+      "isOnSale": true,
+      "rating": 4.9,
+      "reviewCount": 42,
+      "images": [
+        "/src/assets/images/cat_conjuntos_luxo_1790726102214.jpg",
+        "/src/assets/images/cat_lingerie_renda_1790726076080.jpg"
+      ],
+      "colors": [
+        {
+          "name": "Vinho Bordô",
+          "hex": "#5B1525"
+        },
+        {
+          "name": "Rosa Blush",
+          "hex": "#C87D85"
+        },
+        {
+          "name": "Preto Clássico",
+          "hex": "#1C1917"
+        }
+      ],
+      "sizes": [
+        "P (40)",
+        "M (42)",
+        "G (44)",
+        "GG (46)"
+      ],
+      "description": "O Conjunto Renda Chantilly Floratta foi confeccionado para unir sofisticação e conforto inigualável. Sutiã com bojo suave removível, aro flexível anatômico e calcinha caleçon de renda nobre que não marca sob as roupas.",
+      "material": "88% Poliamida, 12% Elastano. Forro 100% Algodão antibacteriano.",
+      "careInstructions": "Lavar à mão em água fria. Usar sabão neutro. Secar à sombra sem torcer. Não alvejar e não passar a ferro.",
+      "dimensions": "30x20x5 cm",
+      "weightGrams": 160,
+      "createdAt": "2026-09-30T00:00:37.448Z"
+    },
+    {
+      "id": "prod-002",
+      "name": "Pijama Longo Cetim Silk Serena",
+      "slug": "pijama-longo-cetim-silk-serena",
+      "sku": "MITD-PJ-002",
+      "category": "Pijamas",
+      "subcategory": "Sleepwear Premium",
+      "price": 269,
+      "promoPrice": 219,
+      "discountPercent": 19,
+      "stock": 18,
+      "minStockAlert": 4,
+      "isFeatured": true,
+      "isNew": false,
+      "isOnSale": true,
+      "rating": 5,
+      "reviewCount": 38,
+      "images": [
+        "/src/assets/images/cat_sleepwear_satin_1790726084222.jpg"
+      ],
+      "colors": [
+        {
+          "name": "Champagne Rosé",
+          "hex": "#EFE6E1"
+        },
+        {
+          "name": "Rosa Nude",
+          "hex": "#C87D85"
+        },
+        {
+          "name": "Azul Meia-Noite",
+          "hex": "#1E293B"
+        }
+      ],
+      "sizes": [
+        "P",
+        "M",
+        "G",
+        "GG"
+      ],
+      "description": "Pijama de luxo confeccionado em cetim com elastano de toque sedoso e caimento impecável. Camisa com gola lapela, botões forrados e calça com elástico macio na cintura. Ideal para noites de puro bem-estar e noites aconchegantes.",
+      "material": "95% Poliéster Acetinado com toque de seda, 5% Elastano.",
+      "careInstructions": "Lavagem delicada à máquina ou à mão. Não usar alvejante. Secagem em varal à sombra.",
+      "dimensions": "35x25x6 cm",
+      "weightGrams": 280,
+      "createdAt": "2026-09-30T00:00:37.449Z"
+    },
+    {
+      "id": "prod-003",
+      "name": "Bralette Renda Romance sem Aro",
+      "slug": "bralette-renda-romance-sem-aro",
+      "sku": "MITD-ST-003",
+      "category": "Sutiãs",
+      "subcategory": "Bralettes",
+      "price": 119.9,
+      "promoPrice": 89.9,
+      "discountPercent": 25,
+      "stock": 40,
+      "minStockAlert": 8,
+      "isFeatured": true,
+      "isNew": true,
+      "isOnSale": true,
+      "rating": 4.8,
+      "reviewCount": 56,
+      "images": [
+        "/src/assets/images/cat_lingerie_renda_1790726076080.jpg"
+      ],
+      "colors": [
+        {
+          "name": "Blush Nude",
+          "hex": "#D7C4BA"
+        },
+        {
+          "name": "Off-White Silk",
+          "hex": "#FAF8F6"
+        },
+        {
+          "name": "Bordô Glamour",
+          "hex": "#5B1525"
+        }
+      ],
+      "sizes": [
+        "P (40)",
+        "M (42)",
+        "G (44)",
+        "GG (46)"
+      ],
+      "description": "O Bralette Romance sem aro proporciona liberdade total de movimentos sem abrir mão da sustentação suave. Feito com renda elástica hipoalergênica e detalhes de alças duplas delicadas.",
+      "material": "90% Poliamida, 10% Elastano. Forro em microtule macio.",
+      "careInstructions": "Lavar à mão. Não torcer. Secar na horizontal à sombra.",
+      "dimensions": "25x20x3 cm",
+      "weightGrams": 90,
+      "createdAt": "2026-09-30T00:00:37.449Z"
+    },
+    {
+      "id": "prod-004",
+      "name": "Kit 3 Cuecas Boxer Modal Ultra Comfort",
+      "slug": "kit-3-cuecas-boxer-modal-ultra-comfort",
+      "sku": "MITD-MS-004",
+      "category": "Moda Masculina",
+      "subcategory": "Boxer",
+      "price": 159.9,
+      "promoPrice": 129.9,
+      "discountPercent": 18,
+      "stock": 38,
+      "minStockAlert": 10,
+      "isFeatured": true,
+      "isNew": false,
+      "isOnSale": true,
+      "rating": 4.9,
+      "reviewCount": 64,
+      "images": [
+        "/src/assets/images/cat_mens_underwear_1790726093399.jpg"
+      ],
+      "colors": [
+        {
+          "name": "Kit Neutro (Preto/Cinza/Marinho)",
+          "hex": "#334155"
+        },
+        {
+          "name": "Preto Total",
+          "hex": "#18181B"
+        }
+      ],
+      "sizes": [
+        "P",
+        "M",
+        "G",
+        "GG",
+        "XG"
+      ],
+      "description": "Desenvolvidas com a nobre fibra de modal, essas cuecas boxer masculinas oferecem conforto térmico inigualável, toque extremamente macio e elástico personalizado que não aperta a cintura nem enrola nas pernas.",
+      "material": "92% Modal Nobre, 8% Elastano. Forro frontal anatômico 100% Algodão.",
+      "careInstructions": "Lavável em máquina. Evitar secadora para maior durabilidade da fibra.",
+      "dimensions": "28x18x5 cm",
+      "weightGrams": 320,
+      "createdAt": "2026-09-30T00:00:37.449Z"
+    },
+    {
+      "id": "prod-005",
+      "name": "Calcinha Fio Duplo Invisível Confort",
+      "slug": "calcinha-fio-duplo-invisivel-confort",
+      "sku": "MITD-CL-005",
+      "category": "Calcinhas",
+      "subcategory": "Sem Costura",
+      "price": 39.9,
+      "promoPrice": 29.9,
+      "discountPercent": 25,
+      "stock": 95,
+      "minStockAlert": 20,
+      "isFeatured": false,
+      "isNew": true,
+      "isOnSale": true,
+      "rating": 4.9,
+      "reviewCount": 88,
+      "images": [
+        "/src/assets/images/cat_conjuntos_luxo_1790726102214.jpg"
+      ],
+      "colors": [
+        {
+          "name": "Nude Areia",
+          "hex": "#EFE6E1"
+        },
+        {
+          "name": "Preto",
+          "hex": "#1C1917"
+        },
+        {
+          "name": "Vinho",
+          "hex": "#5B1525"
+        }
+      ],
+      "sizes": [
+        "P",
+        "M",
+        "G",
+        "GG"
+      ],
+      "description": "A calcinha essencial para o dia a dia. Corte a laser e tecido ultrafino que não marca absolutamente nada, mesmo sob vestidos justos, calças de alfaiataria ou leggings de academia.",
+      "material": "85% Microfibra Poliamida, 15% Elastano. Fundo 100% Algodão.",
+      "careInstructions": "Lavar à mão ou saquinho protetor. Secar à sombra.",
+      "dimensions": "18x15x1 cm",
+      "weightGrams": 45,
+      "createdAt": "2026-09-30T00:00:37.449Z"
+    },
+    {
+      "id": "prod-006",
+      "name": "Baby Doll Renda e Tule Glamour",
+      "slug": "baby-doll-renda-e-tule-glamour",
+      "sku": "MITD-BD-006",
+      "category": "Baby Doll",
+      "subcategory": "Sleepwear Sensual",
+      "price": 179.9,
+      "promoPrice": 139.9,
+      "discountPercent": 22,
+      "stock": 22,
+      "minStockAlert": 5,
+      "isFeatured": true,
+      "isNew": false,
+      "isOnSale": true,
+      "rating": 4.8,
+      "reviewCount": 31,
+      "images": [
+        "/src/assets/images/cat_sleepwear_satin_1790726084222.jpg"
+      ],
+      "colors": [
+        {
+          "name": "Rosa Vintage",
+          "hex": "#C87D85"
+        },
+        {
+          "name": "Preto Nobre",
+          "hex": "#1C1917"
+        },
+        {
+          "name": "Bordô Intenso",
+          "hex": "#5B1525"
+        }
+      ],
+      "sizes": [
+        "P",
+        "M",
+        "G",
+        "GG"
+      ],
+      "description": "Baby doll confeccionado em tule elástico leve e renda floral macia com bojo anatômico forrado. Acompanha calcinha regulável em fita de cetim.",
+      "material": "90% Poliamida, 10% Elastano.",
+      "careInstructions": "Lavar exclusivamente à mão com sabão neutro. Não torcer.",
+      "dimensions": "25x20x4 cm",
+      "weightGrams": 140,
+      "createdAt": "2026-09-30T00:00:37.449Z"
+    },
+    {
+      "id": "prod-007",
+      "name": "Kit 5 Calcinhas Algodão Todo Dia",
+      "slug": "kit-5-calcinhas-algodao-todo-dia",
+      "sku": "MITD-KT-007",
+      "category": "Kits",
+      "subcategory": "Kits Básicos",
+      "price": 149.9,
+      "promoPrice": 99.9,
+      "discountPercent": 33,
+      "stock": 45,
+      "minStockAlert": 12,
+      "isFeatured": true,
+      "isNew": true,
+      "isOnSale": true,
+      "rating": 4.9,
+      "reviewCount": 112,
+      "images": [
+        "/src/assets/images/cat_lingerie_renda_1790726076080.jpg"
+      ],
+      "colors": [
+        {
+          "name": "Cores Sortidas Pastéis",
+          "hex": "#EFE6E1"
+        }
+      ],
+      "sizes": [
+        "P",
+        "M",
+        "G",
+        "GG"
+      ],
+      "description": "O kit mais querido para a rotina diária! Composto por 5 calcinhas em puro algodão nobre respirável com elástico macio que não machuca. Saúde íntima e conforto máximo.",
+      "material": "96% Algodão Penteado Antialérgico, 4% Elastano.",
+      "careInstructions": "Lavagem normal até 40°C. Não alvejar.",
+      "dimensions": "26x18x6 cm",
+      "weightGrams": 240,
+      "createdAt": "2026-09-30T00:00:37.449Z"
+    },
+    {
+      "id": "prod-008",
+      "name": "Sutiã Sustentação com Bojo Anatômico",
+      "slug": "sutia-sustentacao-bojo-anatomico",
+      "sku": "MITD-ST-008",
+      "category": "Sutiãs",
+      "subcategory": "Sustentação",
+      "price": 139.9,
+      "promoPrice": 119.9,
+      "discountPercent": 14,
+      "stock": 30,
+      "minStockAlert": 6,
+      "isFeatured": false,
+      "isNew": false,
+      "isOnSale": true,
+      "rating": 4.7,
+      "reviewCount": 45,
+      "images": [
+        "/src/assets/images/cat_conjuntos_luxo_1790726102214.jpg"
+      ],
+      "colors": [
+        {
+          "name": "Nude Pele",
+          "hex": "#D7C4BA"
+        },
+        {
+          "name": "Preto",
+          "hex": "#18181B"
+        },
+        {
+          "name": "Bordô",
+          "hex": "#5B1525"
+        }
+      ],
+      "sizes": [
+        "40",
+        "42",
+        "44",
+        "46",
+        "48"
+      ],
+      "description": "Sutiã com laterais largas redutoras que abraçam a silhueta, alças almofadadas que aliviam a pressão nos ombros e bojo ergonômico com suporte firme.",
+      "material": "82% Poliamida, 18% Elastano.",
+      "careInstructions": "Lavar à mão para não deformar o bojo.",
+      "dimensions": "30x20x6 cm",
+      "weightGrams": 150,
+      "createdAt": "2026-09-30T00:00:37.449Z"
+    }
+  ],
+  "categories": [
+    {
+      "id": "cat-lingeries",
+      "name": "Lingeries",
+      "slug": "lingeries",
+      "description": "Bralettes e peças delicadas com rendas nobres e toque macio.",
+      "image": "/src/assets/images/cat_lingerie_renda_1790726076080.jpg",
+      "itemCount": 8
+    },
+    {
+      "id": "cat-conjuntos",
+      "name": "Conjuntos",
+      "slug": "conjuntos",
+      "description": "Combinações sofisticadas de sutiã e calcinha com modelagem perfeita.",
+      "image": "/src/assets/images/cat_conjuntos_luxo_1790726102214.jpg",
+      "itemCount": 6
+    },
+    {
+      "id": "cat-sutias",
+      "name": "Sutiãs",
+      "slug": "sutias",
+      "description": "Sustentação, conforto sem aro, push-up e modelos para o dia a dia.",
+      "image": "/src/assets/images/cat_lingerie_renda_1790726076080.jpg",
+      "itemCount": 7
+    },
+    {
+      "id": "cat-calcinhas",
+      "name": "Calcinhas",
+      "slug": "calcinhas",
+      "description": "Fio dental, caleçon, tanga e calcinhas sem costura ultraconfortáveis.",
+      "image": "/src/assets/images/cat_conjuntos_luxo_1790726102214.jpg",
+      "itemCount": 9
+    },
+    {
+      "id": "cat-pijamas",
+      "name": "Pijamas",
+      "slug": "pijamas",
+      "description": "Pijamas acetinados, algodão nobre e sleepwear com elegância ímpar.",
+      "image": "/src/assets/images/cat_sleepwear_satin_1790726084222.jpg",
+      "itemCount": 5
+    },
+    {
+      "id": "cat-babydoll",
+      "name": "Baby Doll",
+      "slug": "baby-doll",
+      "description": "Sensualidade e frescor com tecidos fluidos e detalhes em tule e renda.",
+      "image": "/src/assets/images/cat_sleepwear_satin_1790726084222.jpg",
+      "itemCount": 4
+    },
+    {
+      "id": "cat-masculino",
+      "name": "Moda Masculina",
+      "slug": "masculino",
+      "description": "Cuecas boxer e slip em microfibra e modal com toque macio e respiração.",
+      "image": "/src/assets/images/cat_mens_underwear_1790726093399.jpg",
+      "itemCount": 6
+    },
+    {
+      "id": "cat-kits",
+      "name": "Kits",
+      "slug": "kits",
+      "description": "Kits promocionais com ótimo custo-benefício para renovar suas gavetas.",
+      "image": "/src/assets/images/cat_lingerie_renda_1790726076080.jpg",
+      "itemCount": 5
+    }
+  ],
+  "orders": [
+    {
+      "id": "ord-1001",
+      "orderNumber": "MITD-9482",
+      "customerName": "Beatriz Silveira",
+      "customerEmail": "beatriz.silveira@email.com",
+      "customerPhone": "(11) 98765-4321",
+      "customerCpf": "123.456.789-00",
+      "shippingAddress": {
+        "cep": "04538-132",
+        "street": "Rua Amauri",
+        "number": "280",
+        "complement": "Apto 81",
+        "neighborhood": "Itaim Bibi",
+        "city": "São Paulo",
+        "state": "SP"
+      },
+      "shippingMethod": "Sedex Express",
+      "shippingCost": 0,
+      "items": [
+        {
+          "productId": "prod-001",
+          "name": "Conjunto Renda Chantilly Floratta",
+          "price": 149.9,
+          "selectedColor": "Vinho Bordô",
+          "selectedSize": "M (42)",
+          "quantity": 1,
+          "image": "/src/assets/images/cat_conjuntos_luxo_1790726102214.jpg"
+        },
+        {
+          "productId": "prod-005",
+          "name": "Calcinha Fio Duplo Invisível Confort",
+          "price": 29.9,
+          "selectedColor": "Nude Areia",
+          "selectedSize": "M",
+          "quantity": 2,
+          "image": "/src/assets/images/cat_conjuntos_luxo_1790726102214.jpg"
+        }
+      ],
+      "subtotal": 209.7,
+      "discount": 20.97,
+      "couponCode": "BEMVINDA10",
+      "total": 188.73,
+      "paymentMethod": "Pix",
+      "status": "Preparando pedido",
+      "createdAt": "2026-09-28T00:00:37.449Z",
+      "updatedAt": "2026-09-29T00:00:37.449Z"
+    },
+    {
+      "id": "ord-1002",
+      "orderNumber": "MITD-9483",
+      "customerName": "Lucas Ferreira",
+      "customerEmail": "lucas.ferreira@email.com",
+      "customerPhone": "(21) 99123-8877",
+      "customerCpf": "321.654.987-11",
+      "shippingAddress": {
+        "cep": "22410-003",
+        "street": "Rua Garcia d'Avila",
+        "number": "145",
+        "neighborhood": "Ipanema",
+        "city": "Rio de Janeiro",
+        "state": "RJ"
+      },
+      "shippingMethod": "PAC Econômico",
+      "shippingCost": 15,
+      "items": [
+        {
+          "productId": "prod-004",
+          "name": "Kit 3 Cuecas Boxer Modal Ultra Comfort",
+          "price": 129.9,
+          "selectedColor": "Kit Neutro",
+          "selectedSize": "G",
+          "quantity": 1,
+          "image": "/src/assets/images/cat_mens_underwear_1790726093399.jpg"
+        }
+      ],
+      "subtotal": 129.9,
+      "discount": 0,
+      "total": 144.9,
+      "paymentMethod": "Cartão de Crédito",
+      "paymentDetails": {
+        "installments": 3,
+        "cardLast4": "4242"
+      },
+      "status": "Enviado",
+      "createdAt": "2026-09-26T00:00:37.449Z",
+      "updatedAt": "2026-09-27T00:00:37.449Z"
+    }
+  ],
+  "coupons": [
+    {
+      "id": "coup-001",
+      "code": "BEMVINDA10",
+      "type": "percentage",
+      "value": 10,
+      "minPurchaseValue": 100,
+      "startDate": "2026-01-01",
+      "expiryDate": "2026-12-31",
+      "usageLimit": 500,
+      "usageCount": 42,
+      "isActive": true
+    },
+    {
+      "id": "coup-002",
+      "code": "TODO15",
+      "type": "percentage",
+      "value": 15,
+      "minPurchaseValue": 200,
+      "startDate": "2026-01-01",
+      "expiryDate": "2026-12-31",
+      "usageLimit": 300,
+      "usageCount": 19,
+      "isActive": true
+    },
+    {
+      "id": "coup-003",
+      "code": "PRIMEIRACOMPRA",
+      "type": "fixed",
+      "value": 20,
+      "minPurchaseValue": 150,
+      "startDate": "2026-01-01",
+      "expiryDate": "2026-12-31",
+      "usageLimit": 1000,
+      "usageCount": 88,
+      "isActive": true
+    }
+  ],
+  "banners": [
+    {
+      "id": "ban-001",
+      "type": "hero",
+      "title": "Moda íntima para todos os dias",
+      "subtitle": "Conforto, beleza e estilo para você se sentir incrível todos os dias.",
+      "buttonText": "COMPRAR AGORA",
+      "buttonLink": "/produtos",
+      "image": "/src/assets/images/hero_lingerie_campaign_1790726065057.jpg",
+      "order": 1,
+      "isActive": true
+    },
+    {
+      "id": "ban-002",
+      "type": "secondary",
+      "title": "Nova Coleção Seda & Renda",
+      "subtitle": "Texturas nobres com toque macio para elevar sua autoestima.",
+      "buttonText": "VER LANÇAMENTOS",
+      "buttonLink": "/novidades",
+      "image": "/src/assets/images/cat_lingerie_renda_1790726076080.jpg",
+      "order": 2,
+      "isActive": true
+    },
+    {
+      "id": "ban-003",
+      "type": "secondary",
+      "title": "Ofertas Especiais de Estação",
+      "subtitle": "Descontos de até 35% nos conjuntos e pijamas favoritos.",
+      "buttonText": "VER OFERTAS",
+      "buttonLink": "/ofertas",
+      "image": "/src/assets/images/cat_conjuntos_luxo_1790726102214.jpg",
+      "order": 3,
+      "isActive": true
+    }
+  ],
+  "reviews": [
+    {
+      "id": "rev-001",
+      "productId": "prod-001",
+      "productName": "Conjunto Renda Chantilly Floratta",
+      "authorName": "Camila Duarte",
+      "rating": 5,
+      "title": "Perfeição em forma de lingerie!",
+      "comment": "A renda é inacreditavelmente macia! Não pinica em nada e veste como uma luva. O bordô é deslumbrante e o acabamento é de altíssimo padrão.",
+      "date": "2026-09-15",
+      "status": "approved"
+    },
+    {
+      "id": "rev-002",
+      "productId": "prod-002",
+      "productName": "Pijama Longo Cetim Silk Serena",
+      "authorName": "Mariana Vasconcelos",
+      "rating": 5,
+      "title": "Melhor compra do ano",
+      "comment": "O toque desse cetim é maravilhoso, fresco e sofisticado. A embalagem veio perfumada e com um carinho que me conquistou. Já pedi mais um!",
+      "date": "2026-09-18",
+      "status": "approved"
+    },
+    {
+      "id": "rev-003",
+      "productId": "prod-004",
+      "productName": "Kit 3 Cuecas Boxer Modal Ultra Comfort",
+      "authorName": "Rodrigo Siqueira",
+      "rating": 5,
+      "title": "Conforto sem igual",
+      "comment": "O tecido modal é outro nível comparado com algodão tradicional. Não enrola na perna nem aperta. Muito top.",
+      "date": "2026-09-21",
+      "status": "approved"
+    }
+  ],
+  "settings": {
+    "storeName": "Moda Intima Todo Dia",
+    "tagline": "Conforto, beleza e sofisticação para todos os seus dias.",
+    "logoUrl": "",
+    "whatsappNumber": "5511999998888",
+    "whatsappMessage": "Olá! Gostaria de mais informações sobre as peças da Moda Intima Todo Dia.",
+    "email": "modaintimatododia@gmail.com",
+    "phone": "(11) 3456-7890",
+    "instagram": "@modaintimatododia",
+    "facebook": "modaintimatododia",
+    "tiktok": "@modaintimatododia",
+    "address": "Av. Paulista, 1500 - Bela Vista, São Paulo - SP",
+    "businessHours": "Segunda a Sábado, das 09h às 19h",
+    "freeShippingThreshold": 199,
+    "defaultShippingCost": 18,
+    "announcementBarText": "✨ FRETE GRÁTIS para compras acima de R$ 199 | 1ª Troca Grátis sem complicações",
+    "showAnnouncementBar": true,
+    "showCountdownPromo": true,
+    "countdownPromoEnd": "2026-10-04T00:00:37.449Z",
+    "countdownPromoTitle": "Semana da Lingerie Elegante – Até 35% OFF por tempo limitado"
+  },
+  "customers": [
+    {
+      "id": "cust-001",
+      "name": "Beatriz Silveira",
+      "email": "beatriz.silveira@email.com",
+      "phone": "(11) 98765-4321",
+      "cpf": "123.456.789-00",
+      "addresses": [
+        {
+          "id": "addr-1",
+          "title": "Casa",
+          "cep": "04538-132",
+          "street": "Rua Amauri",
+          "number": "280",
+          "complement": "Apto 81",
+          "neighborhood": "Itaim Bibi",
+          "city": "São Paulo",
+          "state": "SP",
+          "isDefault": true
+        }
+      ]
+    }
+  ]
+}
