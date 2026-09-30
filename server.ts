@@ -275,18 +275,18 @@ app.get('/api/stats', (_req, res) => {
 // Admin Auth
 app.post('/api/admin/login', (req, res) => {
   const { email, password } = req.body;
-  // Default credentials: admin@modaintimatododia.com.br / admin123
+  const cleanEmail = (email || '').trim().toLowerCase();
   if (
-    (email === 'admin@modaintimatododia.com.br' || email === 'admin') &&
-    password === 'admin123'
+    cleanEmail === 'rafaeledreza@modaintimatododia.com.br' &&
+    password === '253012'
   ) {
     res.json({
       success: true,
       token: 'jwt-admin-token-moda-intima-todo-dia',
-      user: { name: 'Administrador Moda Íntima', email: 'admin@modaintimatododia.com.br', role: 'admin' }
+      user: { name: 'Rafael & Edreza (Administrador)', email: 'rafaeledreza@modaintimatododia.com.br', role: 'admin' }
     });
   } else {
-    res.status(401).json({ error: 'Credenciais inválidas. Use admin@modaintimatododia.com.br / admin123' });
+    res.status(401).json({ error: 'Credenciais inválidas. Verifique o usuário e a senha.' });
   }
 });
 

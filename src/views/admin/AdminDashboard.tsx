@@ -272,7 +272,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ navigate }) => {
                 type="text"
                 value={adminEmail}
                 onChange={e => setAdminEmail(e.target.value)}
-                placeholder="admin@modaintimatododia.com.br"
+                placeholder="seu.email@dominio.com"
                 required
                 className="w-full bg-stone-50 border border-stone-200 rounded-xl px-3.5 py-2.5 text-stone-900"
               />
@@ -288,11 +288,6 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ navigate }) => {
                 required
                 className="w-full bg-stone-50 border border-stone-200 rounded-xl px-3.5 py-2.5 text-stone-900"
               />
-            </div>
-
-            <div className="p-3 bg-rose-50 rounded-xl border border-rose-100 text-[11px] text-stone-600">
-              <p>Credenciais demonstrativas padrão:</p>
-              <p className="font-mono text-[#5B1525] font-bold mt-0.5">admin@modaintimatododia.com.br / admin123</p>
             </div>
 
             <button
