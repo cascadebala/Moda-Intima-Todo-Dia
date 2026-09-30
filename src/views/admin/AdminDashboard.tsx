@@ -106,6 +106,94 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ navigate }) => {
   const [stockChangeProdId, setStockChangeProdId] = useState('');
   const [stockChangeVal, setStockChangeVal] = useState(0);
 
+  // Banner Form States
+  const [isBannerModalOpen, setIsBannerModalOpen] = useState(false);
+  const [editingBanner, setEditingBanner] = useState<Banner | null>(null);
+  const [bannerType, setBannerType] = useState<'hero' | 'secondary' | 'strip'>('hero');
+  const [bannerTitle, setBannerTitle] = useState('');
+  const [bannerSubtitle, setBannerSubtitle] = useState('');
+  const [bannerButtonText, setBannerButtonText] = useState('Ver Coleção');
+  const [bannerButtonLink, setBannerButtonLink] = useState('/produtos');
+  const [bannerImage, setBannerImage] = useState('');
+  const [bannerOrder, setBannerOrder] = useState(1);
+  const [bannerIsActive, setBannerIsActive] = useState(true);
+
+  const handleOpenBannerModal = (b?: Banner) => {
+    if (b) {
+      setEditingBanner(b);
+      setBannerType(b.type || 'hero');
+      setBannerTitle(b.title || '');
+      setBannerSubtitle(b.subtitle || '');
+      setBannerButtonText(b.buttonText || 'Ver Coleção');
+      setBannerButtonLink(b.buttonLink || '/produtos');
+      setBannerImage(b.image || '');
+      setBannerOrder(b.order || 1);
+      setBannerIsActive(b.isActive ?? true);
+    } else {
+      setEditingBanner(null);
+      setBannerType('hero');
+      setBannerTitle('');
+      setBannerSubtitle('');
+      setBannerButtonText('Ver Coleção');
+      setBannerButtonLink('/produtos');
+      setBannerImage('https://images.unsplash.com/photo-1594223274512-ad4803739b7c?auto=format&fit=crop&q=80&w=1600');
+      setBannerOrder(banners.length + 1);
+      setBannerIsActive(true);
+    }
+    setIsBannerModalOpen(true);
+  };
+
+  const handleSaveBanner = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      const payload: Partial<Banner> = {
+        type: bannerType,
+        title: bannerTitle,
+        subtitle: bannerSubtitle,
+        buttonText: bannerButtonText,
+        buttonLink: bannerButtonLink,
+        image: bannerImage,
+        order: Number(bannerOrder),
+        isActive: bannerIsActive
+      };
+
+      if (editingBanner) {
+        await api.updateBanner(editingBanner.id, payload);
+        showToast('Banner salvo e sincronizado com o Firebase Firestore!');
+      } else {
+        await api.createBanner(payload);
+        showToast('Novo banner criado e salvo no Firebase Firestore!');
+      }
+
+      setIsBannerModalOpen(false);
+      loadAllData();
+    } catch {
+      showToast('Erro ao salvar banner', 'error');
+    }
+  };
+
+  const handleToggleBannerStatus = async (banner: Banner) => {
+    try {
+      const updated = !banner.isActive;
+      await api.updateBanner(banner.id, { isActive: updated });
+      showToast(`Banner ${updated ? 'ativado' : 'desativado'} com sucesso!`);
+      loadAllData();
+    } catch {
+      showToast('Erro ao alterar status do banner', 'error');
+    }
+  };
+
+  const handleDeleteBanner = async (id: string, title: string) => {
+    if (!window.confirm(`Deseja realmente excluir o banner "${title}"?`)) return;
+    try {
+      await api.deleteBanner(id);
+      showToast(`Banner "${title}" removido com sucesso.`);
+      loadAllData();
+    } catch {
+      showToast('Erro ao excluir banner', 'error');
+    }
+  };
+
   const loadAllData = async () => {
     setLoading(true);
     try {
@@ -142,6 +230,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ navigate }) => {
     try {
       const result = await syncAllDatabaseToFirestore({
         products,
+        banners,
         orders,
         coupons,
         settings
@@ -895,28 +984,73 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ navigate }) => {
       {/* TAB CONTENT: BANNERS */}
       {tab === 'banners' && (
         <div className="bg-white rounded-3xl p-6 border border-stone-200/80 shadow-xs space-y-6">
-          <div className="pb-4 border-b border-stone-100">
-            <h3 className="font-serif text-xl font-bold text-stone-900">Gerenciamento de Banners</h3>
-            <p className="text-xs text-stone-500">Configure os banners em destaque na página inicial.</p>
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-4 border-b border-stone-100">
+            <div>
+              <h3 className="font-serif text-xl font-bold text-stone-900">Gerenciamento de Banners</h3>
+              <p className="text-xs text-stone-500">
+                Configure os banners em destaque na página inicial. Todos os banners e alterações são salvos permanentemente no Firebase Firestore.
+              </p>
+            </div>
+            <button
+              onClick={() => handleOpenBannerModal()}
+              className="px-4 py-2.5 bg-[#5B1525] hover:bg-[#7E2235] text-white text-xs font-semibold rounded-xl flex items-center gap-2 shadow-xs transition-colors cursor-pointer"
+            >
+              <Plus className="w-4 h-4" />
+              <span>Novo Banner</span>
+            </button>
           </div>
 
           <div className="space-y-4">
-            {banners.map(b => (
-              <div key={b.id} className="p-4 bg-stone-50 rounded-2xl border border-stone-200 flex flex-col md:flex-row gap-4 items-center">
-                <img src={b.image} alt="" className="w-full md:w-48 aspect-video object-cover rounded-xl" />
-                <div className="flex-1 space-y-1 text-xs">
-                  <span className="uppercase text-[10px] font-bold text-[#5B1525]">{b.type}</span>
-                  <h4 className="font-serif text-base font-bold text-stone-900">{b.title}</h4>
-                  <p className="text-stone-500">{b.subtitle}</p>
-                  <p className="text-stone-400">Botão: {b.buttonText} → {b.buttonLink}</p>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-xs font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full">
-                    Ativo
-                  </span>
-                </div>
+            {banners.length === 0 ? (
+              <div className="text-center py-12 text-stone-500 text-xs">
+                Nenhum banner cadastrado. Clique no botão acima para adicionar o primeiro banner.
               </div>
-            ))}
+            ) : (
+              banners.map(b => (
+                <div key={b.id} className="p-4 bg-stone-50 rounded-2xl border border-stone-200 flex flex-col md:flex-row gap-4 items-center">
+                  <img src={b.image} alt="" className="w-full md:w-48 aspect-video object-cover rounded-xl border border-stone-200" />
+                  <div className="flex-1 space-y-1 text-xs">
+                    <div className="flex items-center gap-2">
+                      <span className="uppercase text-[10px] font-bold text-[#5B1525] px-2 py-0.5 bg-rose-50 rounded">
+                        {b.type}
+                      </span>
+                      <span className="text-stone-400 font-mono text-[10px]">Posição #{b.order}</span>
+                    </div>
+                    <h4 className="font-serif text-base font-bold text-stone-900">{b.title}</h4>
+                    <p className="text-stone-500">{b.subtitle}</p>
+                    <p className="text-stone-400">Botão: <span className="font-medium text-stone-700">{b.buttonText}</span> → <span className="font-mono text-stone-600">{b.buttonLink}</span></p>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <button
+                      type="button"
+                      onClick={() => handleToggleBannerStatus(b)}
+                      className={`text-xs font-semibold px-3 py-1 rounded-full cursor-pointer transition-colors ${
+                        b.isActive ? 'bg-emerald-50 text-emerald-700 border border-emerald-200 hover:bg-emerald-100' : 'bg-stone-200 text-stone-600 hover:bg-stone-300'
+                      }`}
+                      title={b.isActive ? 'Clique para desativar' : 'Clique para ativar'}
+                    >
+                      {b.isActive ? '● Ativo' : '○ Inativo'}
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => handleOpenBannerModal(b)}
+                      className="p-2 text-stone-500 hover:text-stone-900 hover:bg-white rounded-lg border border-transparent hover:border-stone-200 transition-colors cursor-pointer"
+                      title="Editar Banner"
+                    >
+                      <Edit2 className="w-4 h-4" />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => handleDeleteBanner(b.id, b.title)}
+                      className="p-2 text-rose-500 hover:text-rose-700 hover:bg-white rounded-lg border border-transparent hover:border-rose-200 transition-colors cursor-pointer"
+                      title="Excluir Banner"
+                    >
+                      <Trash2 className="w-4 h-4" />
+                    </button>
+                  </div>
+                </div>
+              ))
+            )}
           </div>
         </div>
       )}
@@ -1169,7 +1303,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ navigate }) => {
           </div>
 
           {/* Collection Status Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
             <div className="bg-white p-5 rounded-2xl border border-stone-200/80 shadow-xs space-y-2">
               <div className="flex items-center justify-between">
                 <span className="text-xs font-semibold text-stone-500 uppercase tracking-wider">Produtos</span>
@@ -1180,6 +1314,18 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ navigate }) => {
                 <span className="text-xs text-stone-500">cadastrados</span>
               </div>
               <p className="text-[11px] text-stone-400">Coleção: <code className="text-stone-700">/products</code></p>
+            </div>
+
+            <div className="bg-white p-5 rounded-2xl border border-stone-200/80 shadow-xs space-y-2">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-semibold text-stone-500 uppercase tracking-wider">Banners</span>
+                <ImageIcon className="w-4 h-4 text-[#5B1525]" />
+              </div>
+              <div className="flex items-baseline gap-2">
+                <span className="text-2xl font-bold font-serif text-stone-900">{banners.length}</span>
+                <span className="text-xs text-stone-500">salvos</span>
+              </div>
+              <p className="text-[11px] text-stone-400">Coleção: <code className="text-stone-700">/banners</code></p>
             </div>
 
             <div className="bg-white p-5 rounded-2xl border border-stone-200/80 shadow-xs space-y-2">
@@ -1246,7 +1392,158 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ navigate }) => {
         </div>
       )}
 
-      {/* CREATE / EDIT PRODUCT MODAL */}
+      {/* CREATE / EDIT BANNER MODAL */}
+      {isBannerModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-stone-900/60 backdrop-blur-xs">
+          <div className="bg-white rounded-3xl max-w-xl w-full p-6 sm:p-8 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+            <button
+              onClick={() => setIsBannerModalOpen(false)}
+              className="absolute top-4 right-4 p-1.5 text-stone-400 hover:text-stone-700 rounded-full hover:bg-stone-100 cursor-pointer"
+            >
+              <X className="w-5 h-5" />
+            </button>
+
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-10 h-10 rounded-xl bg-[#5B1525]/10 text-[#5B1525] flex items-center justify-center">
+                <ImageIcon className="w-5 h-5" />
+              </div>
+              <div>
+                <h3 className="font-serif text-xl font-bold text-stone-900">
+                  {editingBanner ? 'Editar Banner' : 'Cadastrar Novo Banner'}
+                </h3>
+                <p className="text-xs text-stone-500">
+                  Salvo automaticamente na nuvem Firebase Firestore.
+                </p>
+              </div>
+            </div>
+
+            <form onSubmit={handleSaveBanner} className="space-y-4 text-xs">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-stone-700 font-medium mb-1">Tipo de Banner *</label>
+                  <select
+                    value={bannerType}
+                    onChange={e => setBannerType(e.target.value as any)}
+                    className="w-full bg-stone-50 border border-stone-200 rounded-xl p-2.5"
+                  >
+                    <option value="hero">Hero (Carrossel Principal)</option>
+                    <option value="secondary">Secundário (Destaque Central)</option>
+                    <option value="strip">Faixa Promocional (Strip)</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-stone-700 font-medium mb-1">Ordem / Posição</label>
+                  <input
+                    type="number"
+                    value={bannerOrder}
+                    onChange={e => setBannerOrder(Number(e.target.value))}
+                    min={1}
+                    className="w-full bg-stone-50 border border-stone-200 rounded-xl p-2.5"
+                  />
+                </div>
+
+                <div className="sm:col-span-2">
+                  <label className="block text-stone-700 font-medium mb-1">Título Principal *</label>
+                  <input
+                    type="text"
+                    value={bannerTitle}
+                    onChange={e => setBannerTitle(e.target.value)}
+                    required
+                    placeholder="Ex: Coleção Luxo Renda Francesa"
+                    className="w-full bg-stone-50 border border-stone-200 rounded-xl p-2.5"
+                  />
+                </div>
+
+                <div className="sm:col-span-2">
+                  <label className="block text-stone-700 font-medium mb-1">Subtítulo / Descrição</label>
+                  <input
+                    type="text"
+                    value={bannerSubtitle}
+                    onChange={e => setBannerSubtitle(e.target.value)}
+                    placeholder="Ex: Peças exclusivas para momentos inesquecíveis"
+                    className="w-full bg-stone-50 border border-stone-200 rounded-xl p-2.5"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-stone-700 font-medium mb-1">Texto do Botão</label>
+                  <input
+                    type="text"
+                    value={bannerButtonText}
+                    onChange={e => setBannerButtonText(e.target.value)}
+                    placeholder="Ex: Ver Coleção"
+                    className="w-full bg-stone-50 border border-stone-200 rounded-xl p-2.5"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-stone-700 font-medium mb-1">Link de Destino</label>
+                  <input
+                    type="text"
+                    value={bannerButtonLink}
+                    onChange={e => setBannerButtonLink(e.target.value)}
+                    placeholder="Ex: /produtos ou /categoria/lingeries"
+                    className="w-full bg-stone-50 border border-stone-200 rounded-xl p-2.5"
+                  />
+                </div>
+
+                <div className="sm:col-span-2">
+                  <label className="block text-stone-700 font-medium mb-1">URL da Imagem de Fundo *</label>
+                  <input
+                    type="text"
+                    value={bannerImage}
+                    onChange={e => setBannerImage(e.target.value)}
+                    required
+                    placeholder="https://... ou caminho local"
+                    className="w-full bg-stone-50 border border-stone-200 rounded-xl p-2.5"
+                  />
+                  {bannerImage && (
+                    <div className="mt-2 rounded-xl overflow-hidden border border-stone-200 aspect-video max-h-40 bg-stone-100 flex items-center justify-center">
+                      <img
+                        src={bannerImage}
+                        alt="Prévia do Banner"
+                        className="w-full h-full object-cover"
+                        onError={(e) => {
+                          (e.target as HTMLElement).style.display = 'none';
+                        }}
+                      />
+                    </div>
+                  )}
+                </div>
+
+                <div className="sm:col-span-2 pt-1">
+                  <label className="flex items-center gap-2 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={bannerIsActive}
+                      onChange={e => setBannerIsActive(e.target.checked)}
+                      className="rounded text-[#5B1525]"
+                    />
+                    <span className="font-medium text-stone-800">Banner Ativo na Loja</span>
+                  </label>
+                </div>
+              </div>
+
+              <div className="pt-4 flex justify-end gap-3 border-t border-stone-200">
+                <button
+                  type="button"
+                  onClick={() => setIsBannerModalOpen(false)}
+                  className="px-4 py-2 border border-stone-200 rounded-xl text-stone-600 hover:bg-stone-50 cursor-pointer"
+                >
+                  Cancelar
+                </button>
+                <button
+                  type="submit"
+                  className="px-6 py-2 bg-[#5B1525] hover:bg-[#7E2235] text-white rounded-xl font-semibold uppercase tracking-wider shadow-sm cursor-pointer"
+                >
+                  {editingBanner ? 'Salvar Banner' : 'Cadastrar Banner'}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
       {isProductModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-stone-900/60 backdrop-blur-xs">
           <div className="bg-white rounded-3xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl relative max-h-[90vh] overflow-y-auto">

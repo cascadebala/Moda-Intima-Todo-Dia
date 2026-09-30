@@ -12,6 +12,12 @@ service cloud.firestore {
       allow write: if true; // Managed by application admin logic
     }
 
+    // Banners
+    match /banners/{bannerId} {
+      allow read: if true;
+      allow write: if true;
+    }
+
     // Orders
     match /orders/{orderId} {
       allow read: if true;
