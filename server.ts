@@ -277,13 +277,13 @@ app.post('/api/admin/login', (req, res) => {
   const { email, password } = req.body;
   const cleanEmail = (email || '').trim().toLowerCase();
   if (
-    cleanEmail === 'rafaeledreza@modaintimatododia.com.br' &&
+    cleanEmail === 'rafaelmoda-intima' &&
     password === '301115'
   ) {
     res.json({
       success: true,
       token: 'jwt-admin-token-moda-intima-todo-dia',
-      user: { name: 'Rafael & Edreza (Administrador)', email: 'rafaeledreza@modaintimatododia.com.br', role: 'admin' }
+      user: { name: 'Rafael (Administrador)', email: 'RafaelModa-intima', role: 'admin' }
     });
   } else {
     res.status(401).json({ error: 'Credenciais inválidas. Verifique o usuário e a senha.' });

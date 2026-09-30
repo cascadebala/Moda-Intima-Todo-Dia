@@ -267,12 +267,12 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ navigate }) => {
 
           <form onSubmit={handleAdminLoginSubmit} className="space-y-4 text-xs">
             <div>
-              <label className="block text-stone-700 font-medium mb-1">E-mail de Administrador</label>
+              <label className="block text-stone-700 font-medium mb-1">Usuário de Administrador</label>
               <input
                 type="text"
                 value={adminEmail}
                 onChange={e => setAdminEmail(e.target.value)}
-                placeholder="seu.email@dominio.com"
+                placeholder="Digite seu usuário"
                 required
                 className="w-full bg-stone-50 border border-stone-200 rounded-xl px-3.5 py-2.5 text-stone-900"
               />
