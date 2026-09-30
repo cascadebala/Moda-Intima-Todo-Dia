@@ -41,6 +41,8 @@ import {
   syncSettingsToFirestore,
   DatabaseStatus
 } from '../../services/firestoreSync.ts';
+import { ImageUploadInput } from '../../components/ImageUploadInput.tsx';
+import { MultiImageUploadInput } from '../../components/MultiImageUploadInput.tsx';
 
 interface AdminDashboardProps {
   navigate: (path: string) => void;
@@ -87,7 +89,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ navigate }) => {
   const [prodPromoPrice, setProdPromoPrice] = useState<number | undefined>(undefined);
   const [prodStock, setProdStock] = useState(20);
   const [prodMinStock, setProdMinStock] = useState(5);
-  const [prodImage, setProdImage] = useState('/src/assets/images/cat_lingerie_renda_1790726076080.jpg');
+  const [prodImages, setProdImages] = useState<string[]>(['/src/assets/images/cat_lingerie_renda_1790726076080.jpg']);
   const [prodDescription, setProdDescription] = useState('');
   const [prodMaterial, setProdMaterial] = useState('88% Poliamida, 12% Elastano. Forro 100% Algodão.');
   const [prodCare, setProdCare] = useState('Lavar à mão com sabão neutro.');
@@ -310,7 +312,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ navigate }) => {
         discountPercent: prodPromoPrice ? Math.round(((prodPrice - prodPromoPrice) / prodPrice) * 100) : undefined,
         stock: Number(prodStock),
         minStockAlert: Number(prodMinStock),
-        images: editingProduct && editingProduct.images?.length ? [prodImage, ...editingProduct.images.slice(1)] : [prodImage],
+        images: prodImages.length > 0 ? prodImages : ['/src/assets/images/cat_lingerie_renda_1790726076080.jpg'],
         colors: editingProduct?.colors || [
           { name: 'Vinho Bordô', hex: '#5B1525' },
           { name: 'Rosa Nude', hex: '#C87D85' },
@@ -689,6 +691,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ navigate }) => {
                 setProdPromoPrice(undefined);
                 setProdStock(20);
                 setProdDescription('');
+                setProdImages([]);
                 setIsProductModalOpen(true);
               }}
               className="bg-[#5B1525] hover:bg-[#7E2235] text-white text-xs font-semibold uppercase tracking-wider px-4 py-2.5 rounded-xl flex items-center gap-1.5 transition-colors"
@@ -746,7 +749,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ navigate }) => {
                           setProdPromoPrice(p.promoPrice);
                           setProdStock(p.stock);
                           setProdMinStock(p.minStockAlert);
-                          setProdImage(p.images[0] || '');
+                          setProdImages(p.images && p.images.length > 0 ? p.images : []);
                           setProdDescription(p.description);
                           setProdMaterial(p.material);
                           setProdCare(p.careInstructions);
@@ -1112,6 +1115,17 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ navigate }) => {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="sm:col-span-2">
+              <ImageUploadInput
+                value={settings.logoUrl || ''}
+                onChange={(url) => setSettings({ ...settings, logoUrl: url })}
+                label="Logotipo da Loja (Poste do seu computador)"
+                aspectRatio="square"
+                maxDimension={400}
+                placeholder="Envie a imagem do logo do computador ou cole URL..."
+              />
+            </div>
+
             <div>
               <label className="block text-stone-700 font-medium mb-1">Nome da Loja</label>
               <input
@@ -1489,27 +1503,15 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ navigate }) => {
                 </div>
 
                 <div className="sm:col-span-2">
-                  <label className="block text-stone-700 font-medium mb-1">URL da Imagem de Fundo *</label>
-                  <input
-                    type="text"
+                  <ImageUploadInput
                     value={bannerImage}
-                    onChange={e => setBannerImage(e.target.value)}
+                    onChange={setBannerImage}
+                    label="Imagem de Fundo do Banner (Poste do seu Computador)"
+                    aspectRatio="video"
                     required
-                    placeholder="https://... ou caminho local"
-                    className="w-full bg-stone-50 border border-stone-200 rounded-xl p-2.5"
+                    maxDimension={1600}
+                    placeholder="Cole a URL ou envie foto do computador..."
                   />
-                  {bannerImage && (
-                    <div className="mt-2 rounded-xl overflow-hidden border border-stone-200 aspect-video max-h-40 bg-stone-100 flex items-center justify-center">
-                      <img
-                        src={bannerImage}
-                        alt="Prévia do Banner"
-                        className="w-full h-full object-cover"
-                        onError={(e) => {
-                          (e.target as HTMLElement).style.display = 'none';
-                        }}
-                      />
-                    </div>
-                  )}
                 </div>
 
                 <div className="sm:col-span-2 pt-1">
@@ -1647,13 +1649,11 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ navigate }) => {
                 </div>
 
                 <div className="sm:col-span-2">
-                  <label className="block text-stone-700 font-medium mb-1">URL da Foto Principal *</label>
-                  <input
-                    type="text"
-                    value={prodImage}
-                    onChange={e => setProdImage(e.target.value)}
+                  <MultiImageUploadInput
+                    images={prodImages}
+                    onChange={setProdImages}
+                    label="Fotos do Produto (Poste da mídia do seu computador)"
                     required
-                    className="w-full bg-stone-50 border border-stone-200 rounded-xl p-2.5"
                   />
                 </div>
 
