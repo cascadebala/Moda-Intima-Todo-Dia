@@ -20,7 +20,9 @@ import {
   Search,
   X,
   ExternalLink,
-  ChevronDown
+  ChevronDown,
+  Eye,
+  EyeOff
 } from 'lucide-react';
 import { Product, Order, Coupon, Banner, Review, StoreSettings, OrderStatus } from '../../types/index.ts';
 import { api } from '../../services/api.ts';
@@ -38,6 +40,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ navigate }) => {
   // Login form state if not authenticated
   const [adminEmail, setAdminEmail] = useState('');
   const [adminPass, setAdminPass] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [isLoggingIn, setIsLoggingIn] = useState(false);
 
   // Tab State
@@ -120,7 +123,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ navigate }) => {
   const handleAdminLoginSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoggingIn(true);
-    await loginAdmin(adminEmail, adminPass);
+    await loginAdmin(adminEmail.trim(), adminPass.trim());
     setIsLoggingIn(false);
   };
 
@@ -282,14 +285,24 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ navigate }) => {
 
             <div>
               <label className="block text-stone-700 font-medium mb-1">Senha</label>
-              <input
-                type="password"
-                value={adminPass}
-                onChange={e => setAdminPass(e.target.value)}
-                placeholder="••••••••"
-                required
-                className="w-full bg-stone-50 border border-stone-200 rounded-xl px-3.5 py-2.5 text-stone-900"
-              />
+              <div className="relative">
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  value={adminPass}
+                  onChange={e => setAdminPass(e.target.value)}
+                  placeholder="••••••••"
+                  required
+                  className="w-full bg-stone-50 border border-stone-200 rounded-xl px-3.5 py-2.5 pr-10 text-stone-900"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-stone-400 hover:text-stone-700 transition-colors p-1"
+                  title={showPassword ? 'Ocultar senha' : 'Ver senha'}
+                >
+                  {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                </button>
+              </div>
             </div>
 
             <button

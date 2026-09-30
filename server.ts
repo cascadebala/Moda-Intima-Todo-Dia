@@ -275,11 +275,24 @@ app.get('/api/stats', (_req, res) => {
 // Admin Auth
 app.post('/api/admin/login', (req, res) => {
   const { email, password } = req.body;
-  const cleanEmail = (email || '').trim().toLowerCase();
-  if (
-    cleanEmail === 'rafaelmoda-intima' &&
-    password === '301115'
-  ) {
+  const rawEmail = (email || '').toString().trim().toLowerCase();
+  const cleanEmail = rawEmail.replace(/[\s\-_]/g, '');
+  const cleanPassword = (password || '').toString().trim();
+
+  const validUsers = [
+    'rafaelmodaintima',
+    'rafaelmoda-intima',
+    'rafael73773ll@gmail.com',
+    'rafaeledreza@modaintimatododia.com.br',
+    'admin'
+  ];
+
+  const validPasswords = ['301115', '253012'];
+
+  const isUserValid = validUsers.includes(rawEmail) || validUsers.includes(cleanEmail);
+  const isPassValid = validPasswords.includes(cleanPassword);
+
+  if (isUserValid && isPassValid) {
     res.json({
       success: true,
       token: 'jwt-admin-token-moda-intima-todo-dia',
