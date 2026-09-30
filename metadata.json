@@ -1,0 +1,6 @@
+{
+  "name": "Moda Intima Todo Dia - Loja Oficial de Moda Íntima",
+  "description": "Loja completa e moderna de moda íntima feminina e masculina. Conforto, sofisticação, lingeries de renda, pijamas, sutiãs, calcinhas e conjuntos para todos os dias.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
